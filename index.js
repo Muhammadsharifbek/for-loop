@@ -36,3 +36,55 @@
 //   }
 // }
 // console.log(sum);
+
+// const link = document.querySelector("a");
+// console.log(link.getAttribute("href"));
+
+// link.setAttribute("href", "http://uzmovi.com/");
+// link.textContent = "";
+
+// Elemets
+const elForm = document.querySelector("form");
+const elInput = document.querySelector("input");
+const elSelect = document.querySelector("input");
+const elHeading = document.querySelector("input");
+
+// VARIABLES
+let rub = 128.29;
+let usd = 11516.89;
+let eur = 12554.27;
+
+// functions
+function eventSelect() {
+  switch (elSelect.value) {
+    case "usa":
+      course = usa;
+      return;
+
+    case "eur":
+      course = eur;
+      return;
+
+    case "rub":
+      course = rub;
+      return;
+
+    default:
+      return;
+  }
+}
+
+function eventForm(e) {
+  e.preventDefault();
+
+  if (!course) {
+    elHeading.textContent = "valyuta turini tanlang";
+    return;
+  }
+  elHeading.textContent = `${(+elInput.value / course).toFixed(2)} ${elSelect.valute}`;
+}
+
+// events
+elSelect.addEventListener("change", eventSelect);
+
+elForm.addEventListener("submit", eventForm);
